@@ -17,4 +17,4 @@ Workflow for changing translations:
    - `--import-eq-suggestions` keeps translations identical to the English source (key names like `Ctrl`, `Tab`, product names); otherwise Crowdin skips them as untranslated.
    - Uploads land as unapproved suggestions. A string with an approved translation keeps exporting the approved one, so changing an approved translation also needs an approval (Crowdin editor, or the API: add the translation, then `POST /approvals`).
 4. Sync back: `crowdin download -b master` in the same checkout. The output matches the integration's files byte for byte, so its next sync finds nothing to push.
-5. Check `git diff`: the edited files should match your edits exactly (a mismatch means Crowdin still exports another translation). Commit and push to `l10n_master`; CI recomputes `percentages.json`.
+5. Check `git diff`: the edited files should match your edits exactly (a mismatch means Crowdin still exports another translation). Run `yarn locales-coverage` to recompute `percentages.json` (no CI job does it in this repo), then commit and push to `l10n_master`.
